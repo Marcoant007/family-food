@@ -1,6 +1,4 @@
-# Vamos criar o conteúdo do arquivo README.md baseado nas instruções fornecidas.
 
-conteudo_readme = """
 # 🍽️ Cardápio Digital - Igreja Familia Alicerce
 
 Bem-vindo ao **Cardápio Digital da Igreja Familia Alicerce**! Este projeto foi desenvolvido para facilitar o acesso ao nosso cardápio semanal, onde você pode visualizar nossas opções e enviar seu pedido diretamente para o WhatsApp.
@@ -52,3 +50,38 @@ Nosso cardápio digital é atualizado semanalmente com opções deliciosas e var
         ]
     }
 ]
+```
+
+## 📂 Estrutura do Projeto
+
+```plaintext
+cardapio-digital/
+├── assets/
+│   ├── css/
+│   ├── img/
+│   ├── js/
+│   └── vendor/
+├── index.html
+├── menu.json
+└── README.md
+```
+
+- **assets/**: Contém arquivos de estilo, scripts e imagens.
+- **index.html**: Página principal do cardápio.
+- **menu.json**: Arquivo com as opções de cardápio.
+- **README.md**: Informações sobre o projeto.
+
+## 📞 Contato
+
+Se você tiver dúvidas ou sugestões sobre o projeto, entre em contato:
+
+- **Telefone:** +55 27 98874-0756
+- **Email:** contato@familiaalicerce.com
+
+## 💡 Créditos
+
+Desenvolvido com ❤️ por [Marco Antônio](https://marcoantdeveloper.netlify.app/).
+
+---
+
+**Cardápio Digital da Igreja Familia Alicerce** - Todos os direitos reservados.
