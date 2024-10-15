@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Familia Alicerce</title>
+  <link href="assets/img/icons/faviconfamilia.svg" rel="icon">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/css/main.css" rel="stylesheet">
+  <style>
+    .menu-item {
+      position: relative;
+    }
+
+    .item-count {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background-color: red;
+      color: white;
+      border-radius: 50%;
+      padding: 5px 8px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      display: none;
+    }
+  </style>
+</head>
+<body class="index-page">
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container position-relative d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+        <h1 class="sitename">Familia Alicerce</h1>
+        <span>.</span>
+      </a>
+      <nav id="navmenu" class="navmenu">
+        
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+    <main class="main">
+
+      <section id="hero" class="hero section light-background">
+        <div class="container">
+          <div class="row gy-4 justify-content-center justify-content-lg-between">
+            <div class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center">
+              <h1 data-aos="fade-up">Antes de Sair<br>Tome um Açai</h1>
+              <p data-aos="fade-up" data-aos-delay="100">Faça seu pedido no nosso cardápio e assim que estiver pronto <br>nós te avisamos</p>
+              <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
+                <a href="#menu" class="btn-get-started">Fazer Pedido</a>
+              </div>
+            </div>
+            <div class="col-lg-5 order-1 order-lg-2 hero-img" data-aos="zoom-out">
+              <img src="https://i.pinimg.com/474x/ea/c5/96/eac5969a5138c9978767946653c65c03.jpg" class="img-fluid animated" alt="">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="menu" class="menu section">
+        <div class="container section-title" data-aos="fade-up">
+          <p><span>Escolha por </span> <span class="description-title">Categoria</span></p>
+        </div>
+        
+        <div class="container">
+          <ul class="nav nav-tabs d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100" id="tab-menu"></ul>
+          <div class="tab-content" data-aos="fade-up" data-aos-delay="200" id="menu-content"></div>
+          
+          <div class="text-center mt-4">
+            <button class="btn btn-checkout" onclick="finalizarPedido()">
+              <img src="assets/img/icons/shopping-bag.png" alt="Checkout"> Finalizar Pedido
+            </button>
+          </div>
+
+        </div>
+      </section>
+  </main>
+
+  <footer id="footer" class="footer dark-background">
+    <div class="container">
+    </div>
+  </footer>
+
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <div id="preloader"></div>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/menu.js"></script>
+</body>
+</html>

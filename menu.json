@@ -1,0 +1,100 @@
+[
+    {
+        "categoria": "Caldos",
+        "itens": [
+            {
+                "nome": "Caldo Verde",
+                "ingredientes": "Batata, couve, linguiça",
+                "preco": 5.00,
+                "foto": "https://www.saboresajinomoto.com.br/uploads/images/recipes/caldo-verde-1.jpg"
+            }
+        ]
+    },
+    {
+        "categoria": "Porções",
+        "itens": [
+            {
+                "nome": "Batata Frita",
+                "ingredientes": "Batata Frita",
+                "preco": 15.00,
+                "foto": "https://www.tendaatacado.com.br/dicas/wp-content/uploads/2022/06/como-fazer-batata-frita-topo.jpg"
+            },
+            {
+                "nome": "Porção de Batata com Frango",
+                "ingredientes": "Batata, e franguinho frito",
+                "preco": 15.00,
+                "foto": "https://media-cdn.tripadvisor.com/media/photo-s/15/bb/bf/50/porcao-de-file-de-frango.jpg"
+            }
+        ]
+    },
+    {
+        "categoria": "Salgados",
+        "itens": [
+            {
+                "nome": "Coxinha",
+                "ingredientes": "Frango, catupiry",
+                "preco": 5.00,
+                "foto": "https://d2qcpt1idvpipw.cloudfront.net/recipes/2022/01/Massa-de-salgado-frito.png"
+            },
+            {
+                "nome": "Enroladinho de Salsicha",
+                "ingredientes": "Salsicha, massa de pastel",
+                "preco": 5.00,
+                "foto": "https://img.sitemercado.com.br/produtos/8f5f814ceeb4b6d4b7d22e3ba18954f3dd762781999e77935b88674b6f4db6c0_full.jpg"
+            },
+            {
+                "nome": "Kibe",
+                "ingredientes": "Carne moída, trigo para kibe",
+                "preco": 5.00,
+                "foto": "https://cdn.awsli.com.br/600x450/1847/1847175/produto/89755001/c330a8829e.jpg"
+            }
+        ]
+    },
+    {
+        "categoria": "Açai",
+        "itens": [
+            {
+                "nome": "Açai",
+                "ingredientes": "Açai, leite em pó, leite condensado",
+                "preco": 12.00,
+                "foto": "https://i.pinimg.com/474x/ea/c5/96/eac5969a5138c9978767946653c65c03.jpg"
+            }
+        ]
+    },
+    {
+        "categoria": "Bebidas",
+        "itens": [
+            {
+                "nome": "Suco Natural",
+                "ingredientes": "Sabores: Laranja, Limão, Maracujá",
+                "preco": 7.00,
+                "foto": "https://sachefmio.blob.core.windows.net/fotos/suco-natural-227134.jpg"
+            },
+            {
+                "nome": "Coca-Cola Zero",
+                "ingredientes": "350ml",
+                "preco": 5.00,
+                "foto": "https://images.tcdn.com.br/img/img_prod/1170916/refrigerante_coca_cola_zero_350ml_59210_1_3b2f07fdcc5dade1221f6cbcd183aaaa.jpg"
+            },
+            {
+                "nome": "Coca-Cola",
+                "ingredientes": "350ml",
+                "preco": 5.00,
+                "foto": "https://crsupermercados.com.br/cdn/shop/files/coca_350ml_800x.png?v=1700754095"
+            },
+
+            {
+                "nome": "Guaraná",
+                "ingredientes": "350ml",
+                "preco": 5.00,
+                "foto": "https://savegnagoio.vtexassets.com/arquivos/ids/443350-800-450?v=638472488684900000&width=800&height=450&aspect=true"
+            },
+            {
+                "nome": "Refrigerante Juninho - Cola",
+                "ingredientes": "Sabores: Cola, Uva, Limão",
+                "preco": 3.00,
+                "foto": "https://sachefmio.blob.core.windows.net/fotos/refrigerante-juninho-227135.jpg"
+            }
+        ]
+    }
+]
