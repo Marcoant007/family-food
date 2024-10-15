@@ -105,9 +105,8 @@ function finalizarPedido() {
         return;
     }
 
-    let mensagem = "🍲 *Olá, gostaria de fazer um pedido:* 🍲\n\n";
     let total = 0;
-
+    let mensagem = "🍽️ *Olá, gostaria de fazer um pedido:* 🍽️\n\n";
     for (const key in carrinho) {
         const item = carrinho[key].item;
         const quantidade = carrinho[key].count;
@@ -116,15 +115,34 @@ function finalizarPedido() {
 
         mensagem += `- ${item.nome} (x${quantidade}): R$${subtotal.toFixed(2)} ✅\n`;
     }
+    mensagem += `\n💰 *Total a pagar:* R$${total.toFixed(2)}\n\n`;
 
-    mensagem += `\n💵 *Total a pagar:* R$${total.toFixed(2)}\n\n`;
-    mensagem += "📞 *Aguardo a confirmação do pedido!* 😊";
+    Swal.fire({
+        title: 'Digite seu nome',
+        input: 'text',
+        inputPlaceholder: 'Nome completo',
+        showCancelButton: true,
+        confirmButtonText: 'Enviar Pedido',
+        cancelButtonText: 'Cancelar',
+        confirmButtonColor: '#28a745',
+        inputValidator: (value) => {
+            if (!value) {
+                return 'Por favor, insira seu nome!';
+            }
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            const nome = result.value;
+            mensagem += `🧑 *Nome do cliente:* ${nome}\n\n`;
+            mensagem += "📞 *Aguardo a confirmação do pedido!* 😊";
+            
+            const mensagemEncoded = encodeURIComponent(mensagem);
+            const telefone = "+5527988740756";
+            const url = `https://wa.me/${telefone}?text=${mensagemEncoded}`;
 
-    const mensagemEncoded = encodeURIComponent(mensagem);
-    const telefone = "5527988740756"; // Número sem o "+" inicial
-    const url = `https://wa.me/${telefone}?text=${mensagemEncoded}`;
-
-    window.open(url, "_blank");
+            window.open(url, "_blank");
+        }
+    });
 }
 
 window.onload = carregarCardapio();
