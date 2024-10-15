@@ -1,4 +1,6 @@
 # 🍽️ Cardápio Digital - Igreja Familia Alicerce
+![image](https://github.com/user-attachments/assets/19c6f3cf-4869-4a12-8ede-c778306a096d)
+![image](https://github.com/user-attachments/assets/121a6687-be01-405a-93f0-79a8a9fb229d)
 
 Bem-vindo ao **Cardápio Digital da Igreja Familia Alicerce**! Este projeto foi desenvolvido para facilitar o acesso ao nosso cardápio semanal, onde você pode visualizar nossas opções e enviar seu pedido diretamente para o WhatsApp.
 
