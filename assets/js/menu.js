@@ -1,6 +1,6 @@
-let carrinho = {};
+let cart = {};
 
-async function carregarCardapio() {
+async function loadMenu() {
     try {
         const response = await fetch('menu.json');
         const data = await response.json();
@@ -8,7 +8,7 @@ async function carregarCardapio() {
         const tabMenu = document.getElementById('tab-menu');
         const menuContent = document.getElementById('menu-content');
 
-        data.forEach((categoria, index) => {
+        data.forEach((category, index) => {
             const tabItem = document.createElement('li');
             tabItem.classList.add('nav-item');
 
@@ -16,8 +16,8 @@ async function carregarCardapio() {
             tabLink.classList.add('nav-link');
             if (index === 0) tabLink.classList.add('active', 'show');
             tabLink.setAttribute('data-bs-toggle', 'tab');
-            tabLink.setAttribute('href', `#menu-${categoria.categoria.toLowerCase().replace(/\s/g, '-')}`);
-            tabLink.innerHTML = `<h4>${categoria.categoria}</h4>`;
+            tabLink.setAttribute('href', `#menu-${category.categoria.toLowerCase().replace(/\s/g, '-')}`);
+            tabLink.innerHTML = `<h4>${category.categoria}</h4>`;
 
             tabItem.appendChild(tabLink);
             tabMenu.appendChild(tabItem);
@@ -25,7 +25,7 @@ async function carregarCardapio() {
             const tabPane = document.createElement('div');
             tabPane.classList.add('tab-pane', 'fade');
             if (index === 0) tabPane.classList.add('active', 'show');
-            tabPane.id = `menu-${categoria.categoria.toLowerCase().replace(/\s/g, '-')}`;
+            tabPane.id = `menu-${category.categoria.toLowerCase().replace(/\s/g, '-')}`;
 
             const tabHeader = document.createElement('div');
             tabHeader.classList.add('tab-header', 'text-center');
@@ -33,16 +33,16 @@ async function carregarCardapio() {
             const row = document.createElement('div');
             row.classList.add('row', 'gy-6');
 
-            categoria.itens.forEach(item => {
+            category.itens.forEach(item => {
                 const col = document.createElement('div');
-                col.classList.add('col-lg-3', 'menu-item');
+                col.classList.add('col-lg-3', 'col-md-4', 'col-sm-6', 'menu-item');
+                col.style.cursor = 'pointer';
+                col.onclick = () => addToCart(item);
 
                 const img = document.createElement('img');
                 img.src = item.foto;
                 img.alt = item.nome;
                 img.classList.add('menu-img', 'img-fluid');
-                img.style.cursor = 'pointer';
-                img.onclick = () => adicionarAoCarrinho(item);
 
                 const itemCount = document.createElement('span');
                 itemCount.classList.add('item-count');
@@ -75,35 +75,39 @@ async function carregarCardapio() {
             menuContent.appendChild(tabPane);
         });
     } catch (error) {
-        console.error('Erro ao carregar o cardápio:', error);
+        console.error('Error loading menu:', error);
     }
 }
 
-function adicionarAoCarrinho(item) {
+function addToCart(item) {
     const itemKey = item.nome.replace(/\s/g, '-');
-    if (carrinho[itemKey]) {
-        carrinho[itemKey].count++;
+    if (cart[itemKey]) {
+        cart[itemKey].count++;
     } else {
-        carrinho[itemKey] = {
+        cart[itemKey] = {
             item: item,
             count: 1
         };
     }
-    atualizarContadorItem(itemKey);
-    console.log(`Item adicionado: ${item.nome}`);
+    updateItemCounter(itemKey);
+    console.log(`Item added: ${item.nome}`);
 }
 
-function atualizarContadorItem(itemKey) {
+function updateItemCounter(itemKey) {
     const itemCountElement = document.getElementById(`count-${itemKey}`);
-    itemCountElement.textContent = carrinho[itemKey].count;
-    itemCountElement.style.display = 'inline';
+    if (cart[itemKey]) {
+        itemCountElement.textContent = cart[itemKey].count;
+        itemCountElement.style.display = 'inline';
+    } else {
+        itemCountElement.style.display = 'none';
+    }
 }
 
-function visualizarCarrinho() {
-    if (Object.keys(carrinho).length === 0) {
+function viewCart() {
+    if (Object.keys(cart).length === 0) {
         Swal.fire({
-            title: "Opss..",
-            text: "O carrinho está vazio! Adicione itens antes de finalizar o pedido.",
+            title: "Oops..",
+            text: "O carrinho está vazio.",
             icon: "error",
             confirmButtonText: 'Ok',
             confirmButtonColor: '#28a745',
@@ -112,76 +116,66 @@ function visualizarCarrinho() {
     }
 
     let total = 0;
-    let pedidoHtml = "<ul style='list-style: none; padding: 0;'>";
-    for (const key in carrinho) {
-        const item = carrinho[key].item;
-        const quantidade = carrinho[key].count;
-        const subtotal = item.preco * quantidade;
+    let cartHtml = "<ul style='list-style: none; padding: 0;'>";
+    for (const key in cart) {
+        const item = cart[key].item;
+        const quantity = cart[key].count;
+        const subtotal = item.preco * quantity;
         total += subtotal;
 
-        const nomeAbreviado = abreviarNome(item.nome);
-        
-        pedidoHtml += `
-            <li style="margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between;">
-                <span>${nomeAbreviado} - R$${item.preco.toFixed(2)} x ${quantidade} = R$${subtotal.toFixed(2)}</span>
-                <div>
-                    <button onclick="ajustarQuantidade('${key}', 1)" style="margin-left: 10px; background-color: #28a745; color: white; border: none; border-radius: 50%; width: 30px; height: 30px; font-weight: bold; cursor: pointer;">+</button>
-                    <button onclick="ajustarQuantidade('${key}', -1)" style="margin-left: 5px; background-color: #dc3545; color: white; border: none; border-radius: 50%; width: 30px; height: 30px; font-weight: bold; cursor: pointer;">-</button>
+        const abbreviatedName = abbreviateName(item.nome);
+
+        cartHtml += `
+            <li class="cart-item">
+                <span>${abbreviatedName} - R$${item.preco.toFixed(2)} x ${quantity} = R$${subtotal.toFixed(2)}</span>
+                <div class="button-container">
+                    <button onclick="adjustQuantity('${key}', 1)">+</button>
+                    <button onclick="adjustQuantity('${key}', -1)">-</button>
                 </div>
             </li>
         `;
     }
-    pedidoHtml += `</ul><p><strong>Total: R$${total.toFixed(2)}</strong></p>`;
+    cartHtml += `</ul><p><strong>Total: R$${total.toFixed(2)}</strong></p>`;
 
     Swal.fire({
         title: 'Resumo do Pedido',
-        html: pedidoHtml,
+        html: cartHtml,
         showCancelButton: true,
-        cancelButtonText: 'Continuar Escolhendo',
+        cancelButtonText: 'Continue Comprando',
         confirmButtonText: 'Finalizar Pedido',
         confirmButtonColor: '#28a745',
         preConfirm: () => {
-            finalizarPedido();
+            checkout();
         }
     });
 }
 
-function ajustarQuantidade(itemKey, quantidade) {
-    if (carrinho[itemKey]) {
-        carrinho[itemKey].count += quantidade;
+function adjustQuantity(itemKey, quantity) {
+    if (cart[itemKey]) {
+        cart[itemKey].count += quantity;
 
-        if (carrinho[itemKey].count <= 0) {
-            delete carrinho[itemKey];
+        if (cart[itemKey].count <= 0) {
+            delete cart[itemKey];
             document.getElementById(`count-${itemKey}`).style.display = 'none';
         } else {
-            atualizarContadorItem(itemKey);
+            updateItemCounter(itemKey);
         }
     }
 
-    visualizarCarrinho();
+    viewCart();
 }
 
-function atualizarContadorItem(itemKey) {
-    const itemCountElement = document.getElementById(`count-${itemKey}`);
-    if (carrinho[itemKey]) {
-        itemCountElement.textContent = carrinho[itemKey].count;
-        itemCountElement.style.display = 'inline';
-    } else {
-        itemCountElement.style.display = 'none';
-    }
-}
-
-function finalizarPedido() {
+function checkout() {
     let total = 0;
-    let mensagem = "🍽️ *Olá, gostaria de fazer um pedido:* 🍽️\n\n";
-    for (const key in carrinho) {
-        const item = carrinho[key].item;
-        const quantidade = carrinho[key].count;
-        const subtotal = item.preco * quantidade;
+    let message = "🍽️ *Olá, gostaria de fazer um pedido:* 🍽️\n\n";
+    for (const key in cart) {
+        const item = cart[key].item;
+        const quantity = cart[key].count;
+        const subtotal = item.preco * quantity;
         total += subtotal;
-        mensagem += `- ${item.nome} (x${quantidade}): R$${subtotal.toFixed(2)} ✅\n`;
+        message += `- ${item.nome} (x${quantity}): R$${subtotal.toFixed(2)} ✅\n`;
     }
-    mensagem += `\n💰 *Total a pagar:* R$${total.toFixed(2)}\n\n`;
+    message += `\n💰 *Total a pagar:* R$${total.toFixed(2)}\n\n`;
 
     Swal.fire({
         title: 'Digite seu nome',
@@ -199,10 +193,10 @@ function finalizarPedido() {
     }).then((result) => {
         if (result.isConfirmed) {
             const nome = result.value;
-            mensagem += `*Nome do cliente:* ${nome}\n\n`;
-            mensagem += "📞 *Aguardo a confirmação do pedido!* 😊";
+            message += `*Nome do cliente:* ${nome}\n\n`;
+            message += "📞 *Aguardo a confirmação do pedido!* 😊";
 
-            const mensagemEncoded = encodeURIComponent(mensagem);
+            const mensagemEncoded = encodeURIComponent(message);
             const telefone = "+5527988740756";
             const url = `https://wa.me/${telefone}?text=${mensagemEncoded}`;
 
@@ -211,8 +205,8 @@ function finalizarPedido() {
     });
 }
 
-function abreviarNome(nome, maxLen = 20) {
-    return nome.length > maxLen ? nome.substring(0, maxLen - 3) + "..." : nome;
+function abbreviateName(name, maxLen = 20) {
+    return name.length > maxLen ? name.substring(0, maxLen - 3) + "..." : name;
 }
 
-window.onload = carregarCardapio();
+window.onload = loadMenu();
