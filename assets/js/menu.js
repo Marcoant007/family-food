@@ -99,12 +99,79 @@ function atualizarContadorItem(itemKey) {
     itemCountElement.style.display = 'inline';
 }
 
-function finalizarPedido() {
+function visualizarCarrinho() {
     if (Object.keys(carrinho).length === 0) {
-        alert("O carrinho está vazio! Adicione itens antes de finalizar o pedido.");
+        Swal.fire({
+            title: "Opss..",
+            text: "O carrinho está vazio! Adicione itens antes de finalizar o pedido.",
+            icon: "error",
+            confirmButtonText: 'Ok',
+            confirmButtonColor: '#28a745',
+        });
         return;
     }
 
+    let total = 0;
+    let pedidoHtml = "<ul style='list-style: none; padding: 0;'>";
+    for (const key in carrinho) {
+        const item = carrinho[key].item;
+        const quantidade = carrinho[key].count;
+        const subtotal = item.preco * quantidade;
+        total += subtotal;
+
+        const nomeAbreviado = abreviarNome(item.nome);
+        
+        pedidoHtml += `
+            <li style="margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between;">
+                <span>${nomeAbreviado} - R$${item.preco.toFixed(2)} x ${quantidade} = R$${subtotal.toFixed(2)}</span>
+                <div>
+                    <button onclick="ajustarQuantidade('${key}', 1)" style="margin-left: 10px; background-color: #28a745; color: white; border: none; border-radius: 50%; width: 30px; height: 30px; font-weight: bold; cursor: pointer;">+</button>
+                    <button onclick="ajustarQuantidade('${key}', -1)" style="margin-left: 5px; background-color: #dc3545; color: white; border: none; border-radius: 50%; width: 30px; height: 30px; font-weight: bold; cursor: pointer;">-</button>
+                </div>
+            </li>
+        `;
+    }
+    pedidoHtml += `</ul><p><strong>Total: R$${total.toFixed(2)}</strong></p>`;
+
+    Swal.fire({
+        title: 'Resumo do Pedido',
+        html: pedidoHtml,
+        showCancelButton: true,
+        cancelButtonText: 'Continuar Escolhendo',
+        confirmButtonText: 'Finalizar Pedido',
+        confirmButtonColor: '#28a745',
+        preConfirm: () => {
+            finalizarPedido();
+        }
+    });
+}
+
+function ajustarQuantidade(itemKey, quantidade) {
+    if (carrinho[itemKey]) {
+        carrinho[itemKey].count += quantidade;
+
+        if (carrinho[itemKey].count <= 0) {
+            delete carrinho[itemKey];
+            document.getElementById(`count-${itemKey}`).style.display = 'none';
+        } else {
+            atualizarContadorItem(itemKey);
+        }
+    }
+
+    visualizarCarrinho();
+}
+
+function atualizarContadorItem(itemKey) {
+    const itemCountElement = document.getElementById(`count-${itemKey}`);
+    if (carrinho[itemKey]) {
+        itemCountElement.textContent = carrinho[itemKey].count;
+        itemCountElement.style.display = 'inline';
+    } else {
+        itemCountElement.style.display = 'none';
+    }
+}
+
+function finalizarPedido() {
     let total = 0;
     let mensagem = "🍽️ *Olá, gostaria de fazer um pedido:* 🍽️\n\n";
     for (const key in carrinho) {
@@ -112,7 +179,6 @@ function finalizarPedido() {
         const quantidade = carrinho[key].count;
         const subtotal = item.preco * quantidade;
         total += subtotal;
-
         mensagem += `- ${item.nome} (x${quantidade}): R$${subtotal.toFixed(2)} ✅\n`;
     }
     mensagem += `\n💰 *Total a pagar:* R$${total.toFixed(2)}\n\n`;
@@ -133,9 +199,9 @@ function finalizarPedido() {
     }).then((result) => {
         if (result.isConfirmed) {
             const nome = result.value;
-            mensagem += `🧑 *Nome do cliente:* ${nome}\n\n`;
+            mensagem += `*Nome do cliente:* ${nome}\n\n`;
             mensagem += "📞 *Aguardo a confirmação do pedido!* 😊";
-            
+
             const mensagemEncoded = encodeURIComponent(mensagem);
             const telefone = "+5527988740756";
             const url = `https://wa.me/${telefone}?text=${mensagemEncoded}`;
@@ -143,6 +209,10 @@ function finalizarPedido() {
             window.open(url, "_blank");
         }
     });
+}
+
+function abreviarNome(nome, maxLen = 20) {
+    return nome.length > maxLen ? nome.substring(0, maxLen - 3) + "..." : nome;
 }
 
 window.onload = carregarCardapio();
