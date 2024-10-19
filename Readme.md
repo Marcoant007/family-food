@@ -4,7 +4,7 @@
 
 Bem-vindo ao **Cardápio Digital da Igreja Familia Alicerce**! Este projeto foi desenvolvido para facilitar o acesso ao nosso cardápio semanal, onde você pode visualizar nossas opções e enviar seu pedido diretamente para o WhatsApp.
 
-> Acesse o Cardápio Online: [https://familiaalicerce.netlify.app/cardapio](https://familiaalicerce.netlify.app/cardapio)
+> Acesse o Cardápio Online: [https://familiaalicerce.netlify.app/cardapio](https://cardapiofamiliaalicerce.netlify.app/)
 
 ## 🌟 Visão Geral
 
