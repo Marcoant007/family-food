@@ -35,38 +35,49 @@ async function loadMenu() {
 
             category.itens.forEach(item => {
                 const col = document.createElement('div');
-                col.classList.add('col-lg-3', 'col-md-4', 'col-sm-6', 'menu-item');
-                col.style.cursor = 'pointer';
-                col.onclick = () => addToCart(item);
-
+                col.classList.add('col-lg-3', 'col-md-4', 'menu-item');
+            
                 const img = document.createElement('img');
                 img.src = item.foto;
                 img.alt = item.nome;
                 img.classList.add('menu-img', 'img-fluid');
-
+                img.style.cursor = 'pointer';
+                img.onclick = () => addToCart(item);
+            
                 const itemCount = document.createElement('span');
                 itemCount.classList.add('item-count');
                 itemCount.id = `count-${item.nome.replace(/\s/g, '-')}`;
                 itemCount.textContent = "0";
-
+            
                 col.appendChild(img);
                 col.appendChild(itemCount);
-
+            
                 const title = document.createElement('h4');
                 title.textContent = item.nome;
-
+            
                 const ingredients = document.createElement('p');
                 ingredients.classList.add('ingredients');
                 ingredients.textContent = item.ingredientes;
-
-                const price = document.createElement('p');
+            
+                const priceContainer = document.createElement('div');
+                priceContainer.classList.add('price-container');
+                
+                const price = document.createElement('span');
                 price.classList.add('price');
                 price.textContent = `R$${item.preco.toFixed(2)}`;
-
+                
+                const addButton = document.createElement('button');
+                addButton.classList.add('btn', 'btn-success', 'btn-sm');
+                addButton.textContent = '+';
+                addButton.onclick = () => addToCart(item);
+            
+                priceContainer.appendChild(price);
+                priceContainer.appendChild(addButton);
+            
                 col.appendChild(title);
                 col.appendChild(ingredients);
-                col.appendChild(price);
-
+                col.appendChild(priceContainer);
+            
                 row.appendChild(col);
             });
 
@@ -76,6 +87,19 @@ async function loadMenu() {
         });
     } catch (error) {
         console.error('Error loading menu:', error);
+    }
+}
+
+function updateCartCount() {
+    const cartCount = document.getElementById('cart-count');
+    if (cartCount) { // Verifica se o elemento existe antes de atualizar
+        const totalItems = Object.keys(cart).reduce((sum, key) => sum + cart[key].count, 0);
+        if (totalItems > 0) {
+            cartCount.textContent = totalItems;
+            cartCount.style.display = 'inline';
+        } else {
+            cartCount.style.display = 'none';
+        }
     }
 }
 
@@ -90,6 +114,7 @@ function addToCart(item) {
         };
     }
     updateItemCounter(itemKey);
+    updateCartCount();
     console.log(`Item added: ${item.nome}`);
 }
 
@@ -156,12 +181,9 @@ function adjustQuantity(itemKey, quantity) {
 
         if (cart[itemKey].count <= 0) {
             delete cart[itemKey];
-            document.getElementById(`count-${itemKey}`).style.display = 'none';
-        } else {
-            updateItemCounter(itemKey);
-        }
+        } 
     }
-
+    updateCartCount();
     viewCart();
 }
 

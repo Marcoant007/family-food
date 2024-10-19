@@ -30,10 +30,14 @@
         <h1 class="sitename">Familia Alicerce</h1>
         <span>.</span>
       </a>
-      <nav id="navmenu" class="navmenu">
+      <nav id="navmenu" class="navmenu d-flex align-items-center">
+        <button class="mobile-nav-toggle" aria-label="Abrir menu"></button>
+        <div class="cart-icon d-flex align-items-center" onclick="viewCart()">
+            <img src="assets/img/icons/carrinho.svg" alt="Carrinho" class="cart-svg-icon">
+            <span id="cart-count" class="cart-count">0</span>
+        </div>
         
-        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-      </nav>
+    </nav>
     </div>
   </header>
 
