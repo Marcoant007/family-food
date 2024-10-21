@@ -67,10 +67,16 @@ async function loadMenu() {
                 price.textContent = `R$${item.preco.toFixed(2)}`;
                 
                 const addButton = document.createElement('button');
-                addButton.classList.add('btn', 'btn-success', 'btn-sm');
+                addButton.classList.add('btn', 'btn-add', 'btn-sm');
                 addButton.textContent = '+';
                 addButton.onclick = () => addToCart(item);
+
+                const removeButton = document.createElement('button');
+                removeButton.classList.add('btn', 'btn-subtract', 'btn-sm');
+                removeButton.textContent = "-";
+                removeButton.onclick= () => removeToCart(item);
             
+                priceContainer.appendChild(removeButton);
                 priceContainer.appendChild(price);
                 priceContainer.appendChild(addButton);
             
@@ -92,7 +98,7 @@ async function loadMenu() {
 
 function updateCartCount() {
     const cartCount = document.getElementById('cart-count');
-    if (cartCount) { // Verifica se o elemento existe antes de atualizar
+    if (cartCount) {
         const totalItems = Object.keys(cart).reduce((sum, key) => sum + cart[key].count, 0);
         if (totalItems > 0) {
             cartCount.textContent = totalItems;
@@ -116,6 +122,19 @@ function addToCart(item) {
     updateItemCounter(itemKey);
     updateCartCount();
     console.log(`Item added: ${item.nome}`);
+}
+
+function removeToCart(item) {
+    const itemKey = item.nome.replace(/\s/g, '-');
+    if (cart[itemKey] && cart[itemKey].count > 0){
+        cart[itemKey].count--;
+    } else {
+        console.log(`Sem item para remover`)
+    }
+
+    updateItemCounter(itemKey);
+    updateCartCount();
+    console.log(`Item removed: ${item.nome}`);
 }
 
 function updateItemCounter(itemKey) {

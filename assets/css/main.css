@@ -1529,9 +1529,10 @@ zzz .menu .tab-content .menu-item .menu-img {
   font-size: 18px;
 }
 
-.btn-success {
+.btn-add {
   background-color: #dc3545;
   color: white;
+  font-size: medium;
   border: none;
   cursor: pointer;
   padding: 5px 10px;
@@ -1539,8 +1540,27 @@ zzz .menu .tab-content .menu-item .menu-img {
   border-radius: 5px;
 }
 
-.btn-success:hover {
+.btn-add:hover {
   background-color: #d80b1f;
+  color: white;
+}
+
+
+.btn-subtract {
+  background-color: #37373f;
+  font-size: medium;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 5px 12px;
+  margin: 10px;
+  font-size: 14px;
+  border-radius: 5px;
+}
+
+.btn-subtract:hover {
+  background-color: #202020;
+  color: white;
 }
 
 .cart-icon {
