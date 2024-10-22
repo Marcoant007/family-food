@@ -238,7 +238,7 @@ function checkout() {
             message += "📞 *Aguardo a confirmação do pedido!* 😊";
 
             const mensagemEncoded = encodeURIComponent(message);
-            const telefone = "+5527988740756";
+            const telefone = "+5527998360839";
             const url = `https://wa.me/${telefone}?text=${mensagemEncoded}`;
 
             window.open(url, "_blank");

@@ -65,12 +65,6 @@
         "categoria": "Bebidas",
         "itens": [
             {
-                "nome": "Suco Natural",
-                "ingredientes": "Sabores: Laranja, Limão, Maracujá",
-                "preco": 7.00,
-                "foto": "https://sachefmio.blob.core.windows.net/fotos/suco-natural-227134.jpg"
-            },
-            {
                 "nome": "Coca-Cola Zero",
                 "ingredientes": "350ml",
                 "preco": 5.00,
