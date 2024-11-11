@@ -342,9 +342,7 @@ async function uploadToImgBB(file) {
 function sendOrder(message) {
     message += "📞 *Aguardo a confirmação do pedido!* 😊";
     const mensagemEncoded = encodeURIComponent(message);
-    const telefone = "+5527988740756";
-    // TELEFONE_WHATSAPP
-    const url = `https://wa.me/${telefone}?text=${mensagemEncoded}`;
+    const url = `https://wa.me/${TELEFONE_WHATSAPP}?text=${mensagemEncoded}`;
     window.open(url, "_blank");
 }
 
