@@ -276,6 +276,8 @@ function selectPaymentMethod(message) {
     });
 }
 
+
+
 function handlePixPayment(message) {
     Swal.fire({
         title: 'Pague com Pix',
