@@ -1597,3 +1597,28 @@ zzz .menu .tab-content .menu-item .menu-img {
 .mobile-nav-toggle i {
   color: #fff;
 }
+
+#copy-pix-button {
+  color: #4caf50;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  transform: scale(1.05);
+  font-size: medium;
+  border: 1px solid #6e788100;
+  cursor: pointer;
+  padding: 5px 10px;
+  font-size: 14px;
+  border-radius: 5px;
+}
+
+#copy-pix-button.copied {
+  background-color: #4caf50;
+  color: white;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  transform: scale(1.05);
+  font-size: medium;
+  border: none;
+  cursor: pointer;
+  padding: 5px 10px;
+  font-size: 14px;
+  border-radius: 5px;
+}

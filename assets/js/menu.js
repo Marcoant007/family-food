@@ -276,14 +276,12 @@ function selectPaymentMethod(message) {
     });
 }
 
-
-
 function handlePixPayment(message) {
     Swal.fire({
         title: 'Pague com Pix',
         html: `
             <img src="https://familiaalicerce.netlify.app/assets/img/oferta/qrcode-pix.svg" alt="QR Code" style="width:200px; height:200px;"/>
-            <p>Use o QR code acima ou <button onclick="copyPixCode()">Copiar Código</button></p>
+            <p>Use o QR code acima ou <button id="copy-pix-button" onclick="copyPixCode()">Copiar Código Pix</button></p>
         `,
         showCancelButton: true,
         cancelButtonText: 'Cancelar',
@@ -348,7 +346,14 @@ function sendOrder(message) {
 
 function copyPixCode() {
     navigator.clipboard.writeText(PIX_CODE).then(() => {
-        Swal.fire('Código copiado!', '', 'success');
+        const copyButton = document.getElementById('copy-pix-button');
+        copyButton.textContent = 'Código Copiado!';
+        copyButton.classList.add('copied');
+
+        setTimeout(() => {
+            copyButton.textContent = 'Copiar Código Pix';
+            copyButton.classList.remove('copied');
+        }, 1500);
     });
 }
 
