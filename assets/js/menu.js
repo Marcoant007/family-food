@@ -1,6 +1,6 @@
 let cart = {};
 
-const IMGBB_API_KEY = window.env.IMGBB_API_KEY;
+const F = window.env.Stringf;
 const TELEFONE_WHATSAPP = window.env.TELEFONE_WHATSAPP;
 const PIX_CODE = window.env.PIX_CODE;
 
@@ -304,7 +304,7 @@ function handlePixPayment(message) {
             }).then(async (result) => {
                 if (result.isConfirmed) {
                     const file = result.value;
-                    const linkComprovante = await uploadToImgBB(file);
+                    const linkComprovante = await uploadToImage(file);
                     message += `*Forma de pagamento:* Pix\n*Comprovante:* ${linkComprovante}\n`;
                     sendOrder(message);
                 }
@@ -313,12 +313,12 @@ function handlePixPayment(message) {
     });
 }
 
-async function uploadToImgBB(file) {
+async function uploadToImage(file) {
     const formData = new FormData();
     formData.append("image", file);
 
     try {
-        const response = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
+        const response = await fetch(`https://api.imgbb.com/1/upload?key=${F}`, {
             method: "POST",
             body: formData
         });
