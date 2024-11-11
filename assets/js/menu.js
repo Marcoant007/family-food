@@ -1,5 +1,9 @@
 let cart = {};
 
+const IMGBB_API_KEY = window.env.IMGBB_API_KEY;
+const TELEFONE_WHATSAPP = window.env.TELEFONE_WHATSAPP;
+const PIX_CODE = window.env.PIX_CODE;
+
 async function loadMenu() {
     try {
         const response = await fetch('menu.json');
@@ -223,8 +227,7 @@ function checkout() {
         input: 'text',
         inputPlaceholder: 'Nome completo',
         showCancelButton: true,
-        confirmButtonText: 'Enviar Pedido',
-        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Próximo',
         confirmButtonColor: '#28a745',
         inputValidator: (value) => {
             if (!value) {
@@ -235,14 +238,117 @@ function checkout() {
         if (result.isConfirmed) {
             const nome = result.value;
             message += `*Nome do cliente:* ${nome}\n\n`;
-            message += "📞 *Aguardo a confirmação do pedido!* 😊";
-
-            const mensagemEncoded = encodeURIComponent(message);
-            const telefone = "+5527998360839";
-            const url = `https://wa.me/${telefone}?text=${mensagemEncoded}`;
-
-            window.open(url, "_blank");
+            selectPaymentMethod(message);
         }
+    });
+}
+
+function selectPaymentMethod(message) {
+    Swal.fire({
+        title: 'Escolha a forma de pagamento',
+        input: 'radio',
+        inputOptions: {
+            dinheiro: 'Dinheiro',
+            pix: 'Pix',
+            cartao: 'Cartão'
+        },
+        inputValidator: (value) => {
+            if (!value) {
+                return 'Por favor, selecione uma forma de pagamento!';
+            }
+        },
+        confirmButtonText: 'Continuar',
+        confirmButtonColor: '#28a745'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            const paymentMethod = result.value;
+
+            if (paymentMethod === 'dinheiro') {
+                message += "*Forma de pagamento:* Dinheiro\n";
+                sendOrder(message);
+            } else if (paymentMethod === 'pix') {
+                handlePixPayment(message);
+            } else if (paymentMethod === 'cartao') {
+                message += "*Forma de pagamento:* Cartão\n";
+                sendOrder(message);
+            }
+        }
+    });
+}
+
+function handlePixPayment(message) {
+    Swal.fire({
+        title: 'Pague com Pix',
+        html: `
+            <img src="https://familiaalicerce.netlify.app/assets/img/oferta/qrcode-pix.svg" alt="QR Code" style="width:200px; height:200px;"/>
+            <p>Use o QR code acima ou <button onclick="copyPixCode()">Copiar Código</button></p>
+        `,
+        showCancelButton: true,
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Já Paguei, Enviar Comprovante',
+        confirmButtonColor: '#28a745',
+        preConfirm: () => {
+            return Swal.fire({
+                title: 'Anexe o comprovante de pagamento',
+                input: 'file',
+                inputAttributes: {
+                    accept: 'image/*'
+                },
+                confirmButtonText: 'Enviar Pedido',
+                confirmButtonColor: '#28a745',
+                inputValidator: (file) => {
+                    if (!file) {
+                        return 'Por favor, anexe o comprovante de pagamento!';
+                    }
+                }
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                    const file = result.value;
+                    const linkComprovante = await uploadToImgBB(file);
+                    message += `*Forma de pagamento:* Pix\n*Comprovante:* ${linkComprovante}\n`;
+                    sendOrder(message);
+                }
+            });
+        }
+    });
+}
+
+async function uploadToImgBB(file) {
+    const formData = new FormData();
+    formData.append("image", file);
+
+    try {
+        const response = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
+            method: "POST",
+            body: formData
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            return data.data.url;
+        } else {
+            console.error("Erro ao fazer upload para o ImgBB");
+            return "Link não disponível";
+        }
+    } catch (error) {
+        console.error("Erro de rede:", error);
+        return "Link não disponível";
+    }
+}
+
+
+function sendOrder(message) {
+    message += "📞 *Aguardo a confirmação do pedido!* 😊";
+    const mensagemEncoded = encodeURIComponent(message);
+    const telefone = "+5527988740756";
+    // TELEFONE_WHATSAPP
+    const url = `https://wa.me/${telefone}?text=${mensagemEncoded}`;
+    window.open(url, "_blank");
+}
+
+function copyPixCode() {
+    navigator.clipboard.writeText(PIX_CODE).then(() => {
+        Swal.fire('Código copiado!', '', 'success');
     });
 }
 
