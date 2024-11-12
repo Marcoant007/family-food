@@ -1,6 +1,6 @@
 let cart = {};
 
-const F = window.env.Stringf;
+const F = window.env.STRINGF;
 const TELEFONE_WHATSAPP = window.env.TELEFONE_WHATSAPP;
 const PIX_CODE = window.env.PIX_CODE;
 
