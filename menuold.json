@@ -1,18 +1,18 @@
 [
     {
-        "categoria": "Salgados / Lances",
+        "categoria": "Porções",
         "itens": [
             {
-                "nome": "Coxinha",
-                "ingredientes": "Frango desfiado, massa frita, temperos especiais",
-                "preco": 5.00,
-                "foto": "https://i.pinimg.com/474x/b6/8d/50/b68d506502b60f68c845e7fa3dae710e.jpg"
+                "nome": "Porção de Frango com Batata",
+                "ingredientes": "Frango frito, batata frita",
+                "preco": 20.00,
+                "foto": "https://media-cdn.tripadvisor.com/media/photo-s/15/bb/bf/50/porcao-de-file-de-frango.jpg"
             },
             {
-                "nome": "Lanche Alicerce",
-                "ingredientes": "Pão com linguiça, vinagrete, maionese caseira, batata palha",
-                "preco": 15.00,
-                "foto": "https://i0.wp.com/blogdocheftaico.com/wp-content/uploads/2024/06/Pao-com-Bife-de-Linguica-e-Vinagrete.jpg?fit=800%2C533&ssl=1"
+                "nome": "Batata Frita",
+                "ingredientes": "Batata Frita",
+                "preco": 12.00,
+                "foto": "https://www.tendaatacado.com.br/dicas/wp-content/uploads/2022/06/como-fazer-batata-frita-topo.jpg"
             }
         ]
     },
