@@ -13,87 +13,73 @@ async function loadMenu() {
         const menuContent = document.getElementById('menu-content');
 
         data.forEach((category, index) => {
-            const tabItem = document.createElement('li');
-            tabItem.classList.add('nav-item');
+            const availableItems = category.itens.filter(item => item.disponivel);
+            if (availableItems.length > 0) {
+                const tabItem = document.createElement('li');
+                tabItem.classList.add('nav-item');
 
-            const tabLink = document.createElement('a');
-            tabLink.classList.add('nav-link');
-            if (index === 0) tabLink.classList.add('active', 'show');
-            tabLink.setAttribute('data-bs-toggle', 'tab');
-            tabLink.setAttribute('href', `#menu-${category.categoria.toLowerCase().replace(/\s/g, '-')}`);
-            tabLink.innerHTML = `<h4>${category.categoria}</h4>`;
+                const tabLink = document.createElement('a');
+                tabLink.classList.add('nav-link');
+                if (index === 0) tabLink.classList.add('active', 'show');
+                tabLink.setAttribute('data-bs-toggle', 'tab');
+                tabLink.setAttribute('href', `#menu-${category.categoria.toLowerCase().replace(/\s/g, '-')}`);
+                tabLink.innerHTML = `<h4>${category.categoria}</h4>`;
 
-            tabItem.appendChild(tabLink);
-            tabMenu.appendChild(tabItem);
+                tabItem.appendChild(tabLink);
+                tabMenu.appendChild(tabItem);
 
-            const tabPane = document.createElement('div');
-            tabPane.classList.add('tab-pane', 'fade');
-            if (index === 0) tabPane.classList.add('active', 'show');
-            tabPane.id = `menu-${category.categoria.toLowerCase().replace(/\s/g, '-')}`;
+                const tabPane = document.createElement('div');
+                tabPane.classList.add('tab-pane', 'fade');
+                if (index === 0) tabPane.classList.add('active', 'show');
+                tabPane.id = `menu-${category.categoria.toLowerCase().replace(/\s/g, '-')}`;
 
-            const tabHeader = document.createElement('div');
-            tabHeader.classList.add('tab-header', 'text-center');
+                const row = document.createElement('div');
+                row.classList.add('row', 'gy-6');
 
-            const row = document.createElement('div');
-            row.classList.add('row', 'gy-6');
+                availableItems.forEach(item => {
+                    const col = document.createElement('div');
+                    col.classList.add('col-lg-3', 'col-md-4', 'menu-item');
 
-            category.itens.forEach(item => {
-                const col = document.createElement('div');
-                col.classList.add('col-lg-3', 'col-md-4', 'menu-item');
-            
-                const img = document.createElement('img');
-                img.src = item.foto;
-                img.alt = item.nome;
-                img.classList.add('menu-img', 'img-fluid');
-                img.style.cursor = 'pointer';
-                img.onclick = () => addToCart(item);
-            
-                const itemCount = document.createElement('span');
-                itemCount.classList.add('item-count');
-                itemCount.id = `count-${item.nome.replace(/\s/g, '-')}`;
-                itemCount.textContent = "0";
-            
-                col.appendChild(img);
-                col.appendChild(itemCount);
-            
-                const title = document.createElement('h4');
-                title.textContent = item.nome;
-            
-                const ingredients = document.createElement('p');
-                ingredients.classList.add('ingredients');
-                ingredients.textContent = item.ingredientes;
-            
-                const priceContainer = document.createElement('div');
-                priceContainer.classList.add('price-container');
-                
-                const price = document.createElement('span');
-                price.classList.add('price');
-                price.textContent = `R$${item.preco.toFixed(2)}`;
-                
-                const addButton = document.createElement('button');
-                addButton.classList.add('btn', 'btn-add', 'btn-sm');
-                addButton.textContent = '+';
-                addButton.onclick = () => addToCart(item);
+                    const img = document.createElement('img');
+                    img.src = item.foto;
+                    img.alt = item.nome;
+                    img.classList.add('menu-img', 'img-fluid');
+                    img.style.cursor = 'pointer';
+                    img.onclick = () => addToCart(item);
 
-                const removeButton = document.createElement('button');
-                removeButton.classList.add('btn', 'btn-subtract', 'btn-sm');
-                removeButton.textContent = "-";
-                removeButton.onclick= () => removeToCart(item);
-            
-                priceContainer.appendChild(removeButton);
-                priceContainer.appendChild(price);
-                priceContainer.appendChild(addButton);
-            
-                col.appendChild(title);
-                col.appendChild(ingredients);
-                col.appendChild(priceContainer);
-            
-                row.appendChild(col);
-            });
+                    const title = document.createElement('h4');
+                    title.textContent = item.nome;
 
-            tabPane.appendChild(tabHeader);
-            tabPane.appendChild(row);
-            menuContent.appendChild(tabPane);
+                    const ingredients = document.createElement('p');
+                    ingredients.classList.add('ingredients');
+                    ingredients.textContent = item.ingredientes;
+
+                    const priceContainer = document.createElement('div');
+                    priceContainer.classList.add('price-container');
+
+                    const price = document.createElement('span');
+                    price.classList.add('price');
+                    price.textContent = `R$${item.preco.toFixed(2)}`;
+
+                    const addButton = document.createElement('button');
+                    addButton.classList.add('btn', 'btn-add', 'btn-sm');
+                    addButton.textContent = '+';
+                    addButton.onclick = () => addToCart(item);
+
+                    priceContainer.appendChild(price);
+                    priceContainer.appendChild(addButton);
+
+                    col.appendChild(img);
+                    col.appendChild(title);
+                    col.appendChild(ingredients);
+                    col.appendChild(priceContainer);
+
+                    row.appendChild(col);
+                });
+
+                tabPane.appendChild(row);
+                menuContent.appendChild(tabPane);
+            }
         });
     } catch (error) {
         console.error('Error loading menu:', error);
