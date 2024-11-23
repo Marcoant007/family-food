@@ -22,7 +22,6 @@ async function loadMenu() {
             tabLink.setAttribute('data-bs-toggle', 'tab');
             tabLink.setAttribute('href', `#menu-${category.categoria.toLowerCase().replace(/\s/g, '-')}`);
             tabLink.innerHTML = `<h4>${category.categoria}</h4>`;
-
             tabItem.appendChild(tabLink);
             tabMenu.appendChild(tabItem);
 
@@ -31,45 +30,40 @@ async function loadMenu() {
             if (index === 0) tabPane.classList.add('active', 'show');
             tabPane.id = `menu-${category.categoria.toLowerCase().replace(/\s/g, '-')}`;
 
-            const tabHeader = document.createElement('div');
-            tabHeader.classList.add('tab-header', 'text-center');
-
             const row = document.createElement('div');
             row.classList.add('row', 'gy-6');
 
             category.itens.forEach(item => {
                 const col = document.createElement('div');
                 col.classList.add('col-lg-3', 'col-md-4', 'menu-item');
-            
+
                 const img = document.createElement('img');
                 img.src = item.foto;
                 img.alt = item.nome;
                 img.classList.add('menu-img', 'img-fluid');
                 img.style.cursor = 'pointer';
                 img.onclick = () => addToCart(item);
-            
+
+                const title = document.createElement('h4');
+                title.textContent = item.nome;
+
+                const ingredients = document.createElement('p');
+                ingredients.classList.add('ingredients');
+                ingredients.textContent = item.ingredientes;
+
                 const itemCount = document.createElement('span');
                 itemCount.classList.add('item-count');
                 itemCount.id = `count-${item.nome.replace(/\s/g, '-')}`;
                 itemCount.textContent = "0";
-            
-                col.appendChild(img);
-                col.appendChild(itemCount);
-            
-                const title = document.createElement('h4');
-                title.textContent = item.nome;
-            
-                const ingredients = document.createElement('p');
-                ingredients.classList.add('ingredients');
-                ingredients.textContent = item.ingredientes;
-            
+                itemCount.style.display = 'none';
+
                 const priceContainer = document.createElement('div');
                 priceContainer.classList.add('price-container');
-                
+
                 const price = document.createElement('span');
                 price.classList.add('price');
                 price.textContent = `R$${item.preco.toFixed(2)}`;
-                
+
                 const addButton = document.createElement('button');
                 addButton.classList.add('btn', 'btn-add', 'btn-sm');
                 addButton.textContent = '+';
@@ -77,21 +71,21 @@ async function loadMenu() {
 
                 const removeButton = document.createElement('button');
                 removeButton.classList.add('btn', 'btn-subtract', 'btn-sm');
-                removeButton.textContent = "-";
-                removeButton.onclick= () => removeToCart(item);
-            
+                removeButton.textContent = '-';
+                removeButton.onclick = () => removeToCart(item);
+
                 priceContainer.appendChild(removeButton);
                 priceContainer.appendChild(price);
                 priceContainer.appendChild(addButton);
-            
+
+                col.appendChild(img);
+                col.appendChild(itemCount);
                 col.appendChild(title);
                 col.appendChild(ingredients);
                 col.appendChild(priceContainer);
-            
                 row.appendChild(col);
             });
 
-            tabPane.appendChild(tabHeader);
             tabPane.appendChild(row);
             menuContent.appendChild(tabPane);
         });
@@ -100,16 +94,26 @@ async function loadMenu() {
     }
 }
 
+function updateItemCounter(itemKey) {
+    const itemCountElement = document.getElementById(`count-${itemKey}`);
+    if (itemCountElement) {
+        if (cart[itemKey]) {
+            itemCountElement.textContent = cart[itemKey].count;
+            itemCountElement.style.display = 'inline';
+        } else {
+            itemCountElement.style.display = 'none';
+        }
+    } else {
+        console.warn(`Elemento para o item ${itemKey} não encontrado.`);
+    }
+}
+
 function updateCartCount() {
     const cartCount = document.getElementById('cart-count');
     if (cartCount) {
-        const totalItems = Object.keys(cart).reduce((sum, key) => sum + cart[key].count, 0);
-        if (totalItems > 0) {
-            cartCount.textContent = totalItems;
-            cartCount.style.display = 'inline';
-        } else {
-            cartCount.style.display = 'none';
-        }
+        const totalItems = Object.values(cart).reduce((sum, item) => sum + item.count, 0);
+        cartCount.textContent = totalItems > 0 ? totalItems : '';
+        cartCount.style.display = totalItems > 0 ? 'inline' : 'none';
     }
 }
 
@@ -118,10 +122,7 @@ function addToCart(item) {
     if (cart[itemKey]) {
         cart[itemKey].count++;
     } else {
-        cart[itemKey] = {
-            item: item,
-            count: 1
-        };
+        cart[itemKey] = { item, count: 1 };
     }
     updateItemCounter(itemKey);
     updateCartCount();
@@ -130,25 +131,15 @@ function addToCart(item) {
 
 function removeToCart(item) {
     const itemKey = item.nome.replace(/\s/g, '-');
-    if (cart[itemKey] && cart[itemKey].count > 0){
+    if (cart[itemKey] && cart[itemKey].count > 0) {
         cart[itemKey].count--;
+        if (cart[itemKey].count === 0) delete cart[itemKey];
     } else {
-        console.log(`Sem item para remover`)
+        console.warn(`Sem item para remover: ${item.nome}`);
     }
-
     updateItemCounter(itemKey);
     updateCartCount();
     console.log(`Item removed: ${item.nome}`);
-}
-
-function updateItemCounter(itemKey) {
-    const itemCountElement = document.getElementById(`count-${itemKey}`);
-    if (cart[itemKey]) {
-        itemCountElement.textContent = cart[itemKey].count;
-        itemCountElement.style.display = 'inline';
-    } else {
-        itemCountElement.style.display = 'none';
-    }
 }
 
 function viewCart() {
@@ -166,16 +157,13 @@ function viewCart() {
     let total = 0;
     let cartHtml = "<ul style='list-style: none; padding: 0;'>";
     for (const key in cart) {
-        const item = cart[key].item;
-        const quantity = cart[key].count;
-        const subtotal = item.preco * quantity;
+        const { item, count } = cart[key];
+        const subtotal = item.preco * count;
         total += subtotal;
-
-        const abbreviatedName = abbreviateName(item.nome);
 
         cartHtml += `
             <li class="cart-item">
-                <span>${abbreviatedName} - R$${item.preco.toFixed(2)} x ${quantity} = R$${subtotal.toFixed(2)}</span>
+                <span>${item.nome} - R$${item.preco.toFixed(2)} x ${count} = R$${subtotal.toFixed(2)}</span>
                 <div class="button-container">
                     <button onclick="adjustQuantity('${key}', 1)">+</button>
                     <button onclick="adjustQuantity('${key}', -1)">-</button>
@@ -192,20 +180,16 @@ function viewCart() {
         cancelButtonText: 'Continue Comprando',
         confirmButtonText: 'Finalizar Pedido',
         confirmButtonColor: '#28a745',
-        preConfirm: () => {
-            checkout();
-        }
+        preConfirm: checkout
     });
 }
 
 function adjustQuantity(itemKey, quantity) {
     if (cart[itemKey]) {
         cart[itemKey].count += quantity;
-
-        if (cart[itemKey].count <= 0) {
-            delete cart[itemKey];
-        } 
+        if (cart[itemKey].count <= 0) delete cart[itemKey];
     }
+    updateItemCounter(itemKey);
     updateCartCount();
     viewCart();
 }
@@ -336,7 +320,6 @@ async function uploadToImage(file) {
     }
 }
 
-
 function sendOrder(message) {
     message += "📞 *Aguardo a confirmação do pedido!* 😊";
     const mensagemEncoded = encodeURIComponent(message);
@@ -357,8 +340,4 @@ function copyPixCode() {
     });
 }
 
-function abbreviateName(name, maxLen = 20) {
-    return name.length > maxLen ? name.substring(0, maxLen - 3) + "..." : name;
-}
-
-window.onload = loadMenu();
+window.onload = loadMenu;
