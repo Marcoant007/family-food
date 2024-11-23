@@ -17,37 +17,56 @@
         ]
     },
     {
+        "categoria": "Salgados / Lances",
+        "itens": [
+            {
+                "nome": "Hambúrguer Cheddar e Bacon",
+                "ingredientes": "Pão, hambúrguer, cheddar, bacon",
+                "preco": 10.00,
+                "foto": "https://i.pinimg.com/originals/29/3d/23/293d23542ccf7029fe1d5a82938c2104.jpg",
+                "disponivel": true
+            },
+            {
+                "nome": "Pastel de Frango com Requeijão",
+                "ingredientes": "Massa de pastel, recheio de frango com requeijão",
+                "preco": 10.00,
+                "foto": "https://i.pinimg.com/originals/f7/d5/6a/f7d56a4c42ebcfb194262e09d9d3dc35.png",
+                "disponivel": true
+            }
+        ]
+    },
+    {
         "categoria": "Pastéis",
         "itens": [
             {
                 "nome": "Pastel de Frango",
                 "ingredientes": "Massa de pastel, frango desfiado",
                 "preco": 9.00,
-                "foto": "https://e7.pngegg.com/pngimages/108/1010/png-clipart-brown-wicker-basket-pastel-stuffing-churro-hash-frying-pastel-miscellaneous-food.png"
+                "foto": "https://t3.ftcdn.net/jpg/05/83/72/42/360_F_583724241_rs29nJ38mCx64l52PXDDoD7rMmuJFlBJ.jpg"
             },
             {
                 "nome": "Pastel de Carne",
                 "ingredientes": "Massa de pastel, carne moída",
                 "preco": 9.00,
-                "foto": "https://e7.pngegg.com/pngimages/108/1010/png-clipart-brown-wicker-basket-pastel-stuffing-churro-hash-frying-pastel-miscellaneous-food.png"
+                "foto": "https://t3.ftcdn.net/jpg/05/83/72/42/360_F_583724241_rs29nJ38mCx64l52PXDDoD7rMmuJFlBJ.jpg"
             },
             {
                 "nome": "Pastel de Frango com Queijo",
                 "ingredientes": "Massa de pastel, frango desfiado, queijo",
                 "preco": 9.00,
-                "foto": "https://e7.pngegg.com/pngimages/108/1010/png-clipart-brown-wicker-basket-pastel-stuffing-churro-hash-frying-pastel-miscellaneous-food.png"
+                "foto": "https://t3.ftcdn.net/jpg/05/83/72/42/360_F_583724241_rs29nJ38mCx64l52PXDDoD7rMmuJFlBJ.jpg"
             },
             {
                 "nome": "Pastel de Carne com Queijo",
                 "ingredientes": "Massa de pastel, carne moída, queijo",
                 "preco": 9.00,
-                "foto": "https://e7.pngegg.com/pngimages/108/1010/png-clipart-brown-wicker-basket-pastel-stuffing-churro-hash-frying-pastel-miscellaneous-food.png"
+                "foto": "https://t3.ftcdn.net/jpg/05/83/72/42/360_F_583724241_rs29nJ38mCx64l52PXDDoD7rMmuJFlBJ.jpg"
             },
             {
                 "nome": "Pastel de Queijo com Presunto",
                 "ingredientes": "Massa de pastel, queijo, presunto",
                 "preco": 9.00,
-                "foto": "https://e7.pngegg.com/pngimages/108/1010/png-clipart-brown-wicker-basket-pastel-stuffing-churro-hash-frying-pastel-miscellaneous-food.png"
+                "foto": "https://t3.ftcdn.net/jpg/05/83/72/42/360_F_583724241_rs29nJ38mCx64l52PXDDoD7rMmuJFlBJ.jpg"
             }
         ]
     },
