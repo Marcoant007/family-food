@@ -22,31 +22,31 @@
             {
                 "nome": "Pastel de Frango",
                 "ingredientes": "Massa de pastel, frango desfiado",
-                "preco": 10.00,
+                "preco": 9.00,
                 "foto": "https://e7.pngegg.com/pngimages/108/1010/png-clipart-brown-wicker-basket-pastel-stuffing-churro-hash-frying-pastel-miscellaneous-food.png"
             },
             {
                 "nome": "Pastel de Carne",
                 "ingredientes": "Massa de pastel, carne moída",
-                "preco": 10.00,
+                "preco": 9.00,
                 "foto": "https://e7.pngegg.com/pngimages/108/1010/png-clipart-brown-wicker-basket-pastel-stuffing-churro-hash-frying-pastel-miscellaneous-food.png"
             },
             {
                 "nome": "Pastel de Frango com Queijo",
                 "ingredientes": "Massa de pastel, frango desfiado, queijo",
-                "preco": 12.00,
+                "preco": 9.00,
                 "foto": "https://e7.pngegg.com/pngimages/108/1010/png-clipart-brown-wicker-basket-pastel-stuffing-churro-hash-frying-pastel-miscellaneous-food.png"
             },
             {
                 "nome": "Pastel de Carne com Queijo",
                 "ingredientes": "Massa de pastel, carne moída, queijo",
-                "preco": 12.00,
+                "preco": 9.00,
                 "foto": "https://e7.pngegg.com/pngimages/108/1010/png-clipart-brown-wicker-basket-pastel-stuffing-churro-hash-frying-pastel-miscellaneous-food.png"
             },
             {
                 "nome": "Pastel de Queijo com Presunto",
                 "ingredientes": "Massa de pastel, queijo, presunto",
-                "preco": 12.00,
+                "preco": 9.00,
                 "foto": "https://e7.pngegg.com/pngimages/108/1010/png-clipart-brown-wicker-basket-pastel-stuffing-churro-hash-frying-pastel-miscellaneous-food.png"
             }
         ]
