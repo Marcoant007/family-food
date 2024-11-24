@@ -1622,3 +1622,8 @@ zzz .menu .tab-content .menu-item .menu-img {
   font-size: 14px;
   border-radius: 5px;
 }
+
+.swal2-loader {
+  border-color: var(--accent-color) !important; /* Altere para a cor desejada */
+  border-top-color: transparent !important; /* Torna o topo transparente para o efeito de rotação */
+}

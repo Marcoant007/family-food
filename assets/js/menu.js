@@ -260,7 +260,7 @@ function selectPaymentMethod(message) {
     });
 }
 
-function handlePixPayment(message) {
+async function handlePixPayment(message) {
     Swal.fire({
         title: 'Pague com Pix',
         html: `
@@ -288,14 +288,27 @@ function handlePixPayment(message) {
             }).then(async (result) => {
                 if (result.isConfirmed) {
                     const file = result.value;
+                    
+                    // Exibe o modal de loading
+                    Swal.fire({
+                        title: 'Aguarde',
+                        text: 'Estamos enviando seu comprovante...',
+                        allowOutsideClick: false,
+                        didOpen: () => {
+                            Swal.showLoading();
+                        }
+                    });
+
                     const linkComprovante = await uploadToImage(file);
                     message += `*Forma de pagamento:* Pix\n*Comprovante:* ${linkComprovante}\n`;
+
                     sendOrder(message);
                 }
             });
         }
     });
 }
+
 
 async function uploadToImage(file) {
     const formData = new FormData();
@@ -321,11 +334,25 @@ async function uploadToImage(file) {
 }
 
 function sendOrder(message) {
-    message += "📞 *Aguardo a confirmação do pedido!* 😊";
-    const mensagemEncoded = encodeURIComponent(message);
-    const url = `https://wa.me/${TELEFONE_WHATSAPP}?text=${mensagemEncoded}`;
-    window.open(url, "_blank");
+    Swal.fire({
+        title: 'Aguarde',
+        text: 'Estamos finalizando seu pedido...',
+        allowOutsideClick: false,
+        didOpen: () => {
+            Swal.showLoading();
+        }
+    });
+
+    setTimeout(() => {
+        message += "📞 *Aguardo a confirmação do pedido!* 😊";
+        const mensagemEncoded = encodeURIComponent(message);
+        const url = `https://wa.me/${TELEFONE_WHATSAPP}?text=${mensagemEncoded}`;
+        window.open(url, "_blank");
+
+        Swal.close();
+    }, 2000); 
 }
+
 
 function copyPixCode() {
     navigator.clipboard.writeText(PIX_CODE).then(() => {
