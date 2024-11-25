@@ -3,53 +3,16 @@
         "categoria": "Porções",
         "itens": [
             {
-                "nome": "Porção de Frango com Fritas",
-                "ingredientes": "Frango frito, batata frita",
-                "preco": 20.00,
-                "foto": "https://media-cdn.tripadvisor.com/media/photo-s/15/bb/bf/50/porcao-de-file-de-frango.jpg"
-            },
-            {
-                "nome": "Porção de Filé de Peixe com Fritas",
-                "ingredientes": "Filé de peixe, batata frita",
-                "preco": 30.00,
-                "foto": "https://www.sabornamesa.com.br/media/k2/items/cache/13d7a3398dc7b388aef2399aed0ae945_XL.jpg"
-            }
-        ]
-    },
-    {
-        "categoria": "Salgados / Lances",
-        "itens": [
-            {
-                "nome": "Hambúrguer Cheddar e Bacon",
-                "ingredientes": "Pão, hambúrguer, cheddar, bacon",
-                "preco": 10.00,
-                "foto": "https://i.pinimg.com/originals/29/3d/23/293d23542ccf7029fe1d5a82938c2104.jpg",
-                "disponivel": true
-            },
-            {
-                "nome": "Pastel de Frango com Requeijão",
-                "ingredientes": "Massa de pastel, recheio de frango com requeijão",
-                "preco": 10.00,
-                "foto": "https://i.pinimg.com/originals/f7/d5/6a/f7d56a4c42ebcfb194262e09d9d3dc35.png",
-                "disponivel": true
+                "nome": "Porção de Fritas",
+                "ingredientes": "Porção de batata frita",
+                "preco": 12.00,
+                "foto": "https://static.wixstatic.com/media/a037bb_95c9809d8f2a466784365ba9acfa698e~mv2.jpg/v1/fill/w_480,h_406,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/a037bb_95c9809d8f2a466784365ba9acfa698e~mv2.jpg"
             }
         ]
     },
     {
         "categoria": "Pastéis",
         "itens": [
-            {
-                "nome": "Pastel de Frango",
-                "ingredientes": "Massa de pastel, frango desfiado",
-                "preco": 9.00,
-                "foto": "https://t3.ftcdn.net/jpg/05/83/72/42/360_F_583724241_rs29nJ38mCx64l52PXDDoD7rMmuJFlBJ.jpg"
-            },
-            {
-                "nome": "Pastel de Carne",
-                "ingredientes": "Massa de pastel, carne moída",
-                "preco": 9.00,
-                "foto": "https://t3.ftcdn.net/jpg/05/83/72/42/360_F_583724241_rs29nJ38mCx64l52PXDDoD7rMmuJFlBJ.jpg"
-            },
             {
                 "nome": "Pastel de Frango com Queijo",
                 "ingredientes": "Massa de pastel, frango desfiado, queijo",
@@ -67,17 +30,6 @@
                 "ingredientes": "Massa de pastel, queijo, presunto",
                 "preco": 9.00,
                 "foto": "https://t3.ftcdn.net/jpg/05/83/72/42/360_F_583724241_rs29nJ38mCx64l52PXDDoD7rMmuJFlBJ.jpg"
-            }
-        ]
-    },
-    {
-        "categoria": "Caldo de Cana",
-        "itens": [
-            {
-                "nome": "Caldo de Cana 300ml",
-                "ingredientes": "Caldo de cana natural",
-                "preco": 5.00,
-                "foto": "https://static.ndmais.com.br/2023/11/caldo-de-cana-800x533.jpg"
             }
         ]
     },
