@@ -6,7 +6,7 @@ const PIX_CODE = window.env.PIX_CODE;
 
 async function loadMenu() {
     try {
-        const response = await fetch('menuold.json');
+        const response = await fetch('todaymenu.json');
         const data = await response.json();
 
         const tabMenu = document.getElementById('tab-menu');

@@ -1,0 +1,73 @@
+[
+    {
+        "categoria": "Porções",
+        "itens": [
+            {
+                "nome": "Porção de Frango com Batata",
+                "ingredientes": "Frango frito, batata frita",
+                "preco": 25.00,
+                "foto": "https://media-cdn.tripadvisor.com/media/photo-s/15/bb/bf/50/porcao-de-file-de-frango.jpg",
+                "disponivel": false
+            },
+            {
+                "nome": "Porção de Peixe com Batata",
+                "ingredientes": "Iscas de peixe com batata frita",
+                "preco": 30.00,
+                "foto": "https://img.freepik.com/fotos-premium/isca-de-peixe-com-batatas-fritas_538646-12784.jpg",
+                "disponivel": false
+            }
+        ]
+    },
+    {
+        "categoria": "Açai",
+        "itens": [
+            {
+                "nome": "Açai",
+                "ingredientes": "Açai, leite em pó, leite condensado",
+                "preco": 12.00,
+                "foto": "https://media.istockphoto.com/id/1364213175/pt/foto/brazilian-frozen-a%C3%A7ai-berry-ice-cream-smoothie-in-plastic-cup-with-bananas-strawberry-and.jpg?s=612x612&w=0&k=20&c=d1VUzBghAPoefO-w1uYp59Lp9PcnMRHVhzlfRu8VgXk="
+            }
+        ]
+    },
+    {
+        "categoria": "Bebidas",
+        "itens": [
+            {
+                "nome": "Refrigerante Lata",
+                "ingredientes": "350ml",
+                "preco": 5.00,
+                "foto": "https://images.tcdn.com.br/img/img_prod/1170916/refrigerante_coca_cola_zero_350ml_59210_1_3b2f07fdcc5dade1221f6cbcd183aaaa.jpg"
+            },
+            {
+                "nome": "Energético",
+                "ingredientes": "350ml",
+                "preco": 10.00,
+                "foto": "https://fs-vendola-images.s3.amazonaws.com/c706ade939391e6275a4-Designsemnome3.png"
+            },
+            {
+                "nome": "Água Tônica",
+                "ingredientes": "350ml",
+                "preco": 5.00,
+                "foto": "https://m.media-amazon.com/images/I/71OCuUXIaIL._AC_SL1500_.jpg"
+            },
+            {
+                "nome": "Refrigerante Juninho",
+                "ingredientes": "Sabores: Cola, Uva, Limão",
+                "preco": 3.00,
+                "foto": "https://sachefmio.blob.core.windows.net/fotos/refrigerante-juninho-227135.jpg"
+            },
+            {
+                "nome": "Coca 600ml",
+                "ingredientes": "600ml",
+                "preco": 8.00,
+                "foto": "https://andinacocacola.vtexassets.com/arquivos/ids/158147/Coca-Cola-Original-600ml---110122_COCA_PAI.png?v=638575344917030000"
+            },
+            {
+                "nome": "Coca 1,5L",
+                "ingredientes": "1,5L",
+                "preco": 10.00,
+                "foto": "https://www.clubeextra.com.br/img/uploads/1/453/24911453.jpg"
+            }
+        ]
+    }
+]
