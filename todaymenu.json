@@ -1,16 +1,14 @@
 [
-    {
+        {
         "categoria": "Porções",
         "itens": [
             {
-                "nome": "Estrogonofe de frango com arroz e batata palha",
-                "ingredientes": "Estrogonofe de frango com arroz e batata palha",
-                "preco": 12.00,
-                "foto": "https://pubimg.band.uol.com.br/files/56791d9fabcdd87edddb.png",
+                "nome": "Porção de Frango com Batata",
+                "ingredientes": "Frango frito, batata frita",
+                "preco": 20.00,
+                "foto": "https://media-cdn.tripadvisor.com/media/photo-s/15/bb/bf/50/porcao-de-file-de-frango.jpg",
                 "disponivel": false
-            }
-        ]
-    },
+            },
     {
         "categoria": "Açai",
         "itens": [
