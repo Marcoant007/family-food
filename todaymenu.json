@@ -1,5 +1,6 @@
+
 [
-        {
+    {
         "categoria": "Porções",
         "itens": [
             {
@@ -7,6 +8,8 @@
                 "ingredientes": "Frango frito, batata frita",
                 "preco": 20.00,
                 "foto": "https://media-cdn.tripadvisor.com/media/photo-s/15/bb/bf/50/porcao-de-file-de-frango.jpg"
+            }
+        ]
     },
     {
         "categoria": "Açai",
@@ -61,3 +64,4 @@
         ]
     }
 ]
+
