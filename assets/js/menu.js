@@ -122,7 +122,10 @@ function addToCart(item) {
     if (cart[itemKey]) {
         cart[itemKey].count++;
     } else {
-        cart[itemKey] = { item, count: 1 };
+        cart[itemKey] = {
+            item,
+            count: 1
+        };
     }
     updateItemCounter(itemKey);
     updateCartCount();
@@ -157,7 +160,10 @@ function viewCart() {
     let total = 0;
     let cartHtml = "<ul style='list-style: none; padding: 0;'>";
     for (const key in cart) {
-        const { item, count } = cart[key];
+        const {
+            item,
+            count
+        } = cart[key];
         const subtotal = item.preco * count;
         total += subtotal;
 
@@ -288,7 +294,7 @@ async function handlePixPayment(message) {
             }).then(async (result) => {
                 if (result.isConfirmed) {
                     const file = result.value;
-                    
+
                     // Exibe o modal de loading
                     Swal.fire({
                         title: 'Aguarde',
@@ -350,21 +356,115 @@ function sendOrder(message) {
         window.open(url, "_blank");
 
         Swal.close();
-    }, 2000); 
+    }, 2000);
 }
 
 
 function copyPixCode() {
-    navigator.clipboard.writeText(PIX_CODE).then(() => {
+    const total = Object.values(cart).reduce((sum, item) => sum + item.count * item.item.preco, 0);
+
+    const pixParams = {
+        key: PIX_CODE,
+        name: "Familia Alicerce",
+        city: "Vitóra/ES",
+        value: total,
+        description: "Pedido online"
+    };
+
+    const pixCode = generatePixCode(pixParams);
+    navigator.clipboard.writeText(pixCode).then(() => {
         const copyButton = document.getElementById('copy-pix-button');
         copyButton.textContent = 'Código Copiado!';
-        copyButton.classList.add('copied');
-
         setTimeout(() => {
             copyButton.textContent = 'Copiar Código Pix';
-            copyButton.classList.remove('copied');
         }, 1500);
     });
 }
+
+
+function generatePixCode({
+    key,
+    name,
+    city,
+    value,
+    description
+}) {
+    const formatValue = (v) => v.toFixed(2).replace('.', ',');
+
+    const payload = [{
+            id: "00",
+            value: "01"
+        }, // Payload format indicator
+        {
+            id: "26",
+            value: [{
+                    id: "00",
+                    value: "BR.GOV.BCB.PIX"
+                }, // Merchant Account Information
+                {
+                    id: "01",
+                    value: key
+                } // Chave Pix
+            ]
+        },
+        {
+            id: "52",
+            value: "0000"
+        }, // Merchant category code
+        {
+            id: "53",
+            value: "986"
+        }, // Currency (BRL)
+        {
+            id: "54",
+            value: formatValue(value)
+        }, // Valor da transação
+        {
+            id: "58",
+            value: "BR"
+        }, // Country code
+        {
+            id: "59",
+            value: name
+        }, // Nome do recebedor
+        {
+            id: "60",
+            value: city
+        }, // Cidade do recebedor
+        {
+            id: "62",
+            value: [{
+                    id: "05",
+                    value: description
+                } // ID da transação
+            ]
+        }
+    ];
+
+    const formatField = (id, value) => {
+        if (Array.isArray(value)) {
+            const subFields = value.map(sub => formatField(sub.id, sub.value)).join('');
+            return `${id}${subFields.length.toString().padStart(2, '0')}${subFields}`;
+        } else {
+            return `${id}${value.length.toString().padStart(2, '0')}${value}`;
+        }
+    };
+
+    const pixCode = payload.map(field => formatField(field.id, field.value)).join('');
+    const crc16 = calculateCRC16(pixCode + "6304");
+    return pixCode + "6304" + crc16;
+}
+
+function calculateCRC16(pixCode) {
+    let crc = 0xFFFF;
+    for (let i = 0; i < pixCode.length; i++) {
+        crc ^= pixCode.charCodeAt(i) << 8;
+        for (let j = 0; j < 8; j++) {
+            crc = crc & 0x8000 ? (crc << 1) ^ 0x1021 : crc << 1;
+        }
+    }
+    return ((crc ^ 0) & 0xFFFF).toString(16).toUpperCase().padStart(4, '0');
+}
+
 
 window.onload = loadMenu;
