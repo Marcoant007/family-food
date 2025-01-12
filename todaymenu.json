@@ -1,31 +1,31 @@
-[{
+
+[
+    {
         "categoria": "Porções",
-        "itens": [{
-                "nome": "Porção de Frango com Batata",
-                "ingredientes": "Frango frito, batata frita",
-                "preco": 20.00,
-                "foto": "https://media-cdn.tripadvisor.com/media/photo-s/15/bb/bf/50/porcao-de-file-de-frango.jpg"
-            },
+        "itens": [
             {
-                "nome": "Porção de Camarão com Batata",
-                "ingredientes": "Camarão frito, batata frita",
-                "preco": 30.00,
-                "foto": "https://bigbatata.com.br/tecsoftware/conteudo/uploads/2021/01/camarao-a-milanesa-com-fritas.jpg"
+                "nome": "Fricassê com Arroz",
+                "ingredientes": "Fricassê de frango, arroz",
+                "preco": 20.00,
+                "foto": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRkAEy0TDoN5ECul8hIMhXxC9CTm-ReIw_SA&usqp=CAU"
             }
         ]
     },
     {
         "categoria": "Açai",
-        "itens": [{
-            "nome": "Açai",
-            "ingredientes": "Açai, leite em pó, leite condensado",
-            "preco": 12.00,
-            "foto": "https://media.istockphoto.com/id/1364213175/pt/foto/brazilian-frozen-a%C3%A7ai-berry-ice-cream-smoothie-in-plastic-cup-with-bananas-strawberry-and.jpg?s=612x612&w=0&k=20&c=d1VUzBghAPoefO-w1uYp59Lp9PcnMRHVhzlfRu8VgXk="
-        }]
+        "itens": [
+            {
+                "nome": "Açai",
+                "ingredientes": "Açai, leite em pó, leite condensado",
+                "preco": 12.00,
+                "foto": "https://media.istockphoto.com/id/1364213175/pt/foto/brazilian-frozen-a%C3%A7ai-berry-ice-cream-smoothie-in-plastic-cup-with-bananas-strawberry-and.jpg?s=612x612&w=0&k=20&c=d1VUzBghAPoefO-w1uYp59Lp9PcnMRHVhzlfRu8VgXk="
+            }
+        ]
     },
     {
         "categoria": "Bebidas",
-        "itens": [{
+        "itens": [
+            {
                 "nome": "Refrigerante Lata",
                 "ingredientes": "350ml",
                 "preco": 5.00,
