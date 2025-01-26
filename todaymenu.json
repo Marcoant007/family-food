@@ -1,13 +1,12 @@
-
 [
     {
         "categoria": "Porções",
         "itens": [
             {
-                "nome": "Fricassê com Arroz",
-                "ingredientes": "Fricassê de frango, arroz",
-                "preco": 12.00,
-                "foto": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRkAEy0TDoN5ECul8hIMhXxC9CTm-ReIw_SA&usqp=CAU"
+                "nome": "Porção de Frango com Batata",
+                "ingredientes": "Frango frito, batata frita",
+                "preco": 20.00,
+                "foto": "https://media-cdn.tripadvisor.com/media/photo-s/15/bb/bf/50/porcao-de-file-de-frango.jpg"
             }
         ]
     },
