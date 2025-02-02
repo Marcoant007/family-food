@@ -3,10 +3,10 @@
         "categoria": "Porções",
         "itens": [
             {
-                "nome": "Porção de Frango com Batata",
-                "ingredientes": "Frango frito, batata frita",
-                "preco": 20.00,
-                "foto": "https://media-cdn.tripadvisor.com/media/photo-s/15/bb/bf/50/porcao-de-file-de-frango.jpg"
+                "nome": "Arroz e Lasanha",
+                "ingredientes": "Arroz, lasanha",
+                "preco": 15.00,
+                "foto": "https://www.dickow.com.br/blog/wp-content/uploads/2017/02/Lasanha-de-arroz-com-frango.jpg"
             }
         ]
     },
