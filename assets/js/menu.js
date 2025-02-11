@@ -200,6 +200,89 @@ function adjustQuantity(itemKey, quantity) {
     viewCart();
 }
 
+
+async function handlePixPayment(message, total) {
+    Swal.fire({
+        title: 'Pague com Pix',
+        html: `
+            <img src="https://familiaalicerce.netlify.app/assets/img/oferta/qrcode-pix.svg" alt="QR Code" style="width:200px; height:200px;"/>
+            <p><strong>Total a pagar: R$${total.toFixed(2)}</strong></p>
+            <p>Use o QR code acima ou <button id="copy-pix-button" onclick="copyPixCode()">Copiar Código Pix</button></p>
+        `,
+        showCancelButton: true,
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Já Paguei, Enviar Comprovante',
+        confirmButtonColor: '#28a745',
+        preConfirm: () => {
+            return Swal.fire({
+                title: 'Anexe o comprovante de pagamento',
+                input: 'file',
+                inputAttributes: {
+                    accept: 'image/*'
+                },
+                confirmButtonText: 'Enviar Pedido',
+                confirmButtonColor: '#28a745',
+                inputValidator: (file) => {
+                    if (!file) {
+                        return 'Por favor, anexe o comprovante de pagamento!';
+                    }
+                }
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                    const file = result.value;
+
+                    Swal.fire({
+                        title: 'Aguarde',
+                        text: 'Estamos enviando seu comprovante...',
+                        allowOutsideClick: false,
+                        didOpen: () => {
+                            Swal.showLoading();
+                        }
+                    });
+
+                    const linkComprovante = await uploadToImage(file);
+                    message += `*Forma de pagamento:* Pix\n*Comprovante:* ${linkComprovante}\n`;
+
+                    sendOrder(message);
+                }
+            });
+        }
+    });
+}
+
+function selectPaymentMethod(message, total) {
+    Swal.fire({
+        title: 'Escolha a forma de pagamento',
+        input: 'radio',
+        inputOptions: {
+            dinheiro: 'Dinheiro',
+            pix: 'Pix',
+            cartao: 'Cartão'
+        },
+        inputValidator: (value) => {
+            if (!value) {
+                return 'Por favor, selecione uma forma de pagamento!';
+            }
+        },
+        confirmButtonText: 'Continuar',
+        confirmButtonColor: '#28a745'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            const paymentMethod = result.value;
+
+            if (paymentMethod === 'dinheiro') {
+                message += "*Forma de pagamento:* Dinheiro\n";
+                sendOrder(message);
+            } else if (paymentMethod === 'pix') {
+                handlePixPayment(message, total);
+            } else if (paymentMethod === 'cartao') {
+                message += "*Forma de pagamento:* Cartão\n";
+                sendOrder(message);
+            }
+        }
+    });
+}
+
 function checkout() {
     let total = 0;
     let message = "🍽️ *Olá, gostaria de fazer um pedido:* 🍽️\n\n";
@@ -228,92 +311,11 @@ function checkout() {
         if (result.isConfirmed) {
             const nome = result.value;
             message += `*Nome do cliente:* ${nome}\n\n`;
-            selectPaymentMethod(message);
+            selectPaymentMethod(message, total);
         }
     });
 }
 
-function selectPaymentMethod(message) {
-    Swal.fire({
-        title: 'Escolha a forma de pagamento',
-        input: 'radio',
-        inputOptions: {
-            dinheiro: 'Dinheiro',
-            pix: 'Pix',
-            cartao: 'Cartão'
-        },
-        inputValidator: (value) => {
-            if (!value) {
-                return 'Por favor, selecione uma forma de pagamento!';
-            }
-        },
-        confirmButtonText: 'Continuar',
-        confirmButtonColor: '#28a745'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            const paymentMethod = result.value;
-
-            if (paymentMethod === 'dinheiro') {
-                message += "*Forma de pagamento:* Dinheiro\n";
-                sendOrder(message);
-            } else if (paymentMethod === 'pix') {
-                handlePixPayment(message);
-            } else if (paymentMethod === 'cartao') {
-                message += "*Forma de pagamento:* Cartão\n";
-                sendOrder(message);
-            }
-        }
-    });
-}
-
-async function handlePixPayment(message) {
-    Swal.fire({
-        title: 'Pague com Pix',
-        html: `
-            <img src="https://familiaalicerce.netlify.app/assets/img/oferta/qrcode-pix.svg" alt="QR Code" style="width:200px; height:200px;"/>
-            <p>Use o QR code acima ou <button id="copy-pix-button" onclick="copyPixCode()">Copiar Código Pix</button></p>
-        `,
-        showCancelButton: true,
-        cancelButtonText: 'Cancelar',
-        confirmButtonText: 'Já Paguei, Enviar Comprovante',
-        confirmButtonColor: '#28a745',
-        preConfirm: () => {
-            return Swal.fire({
-                title: 'Anexe o comprovante de pagamento',
-                input: 'file',
-                inputAttributes: {
-                    accept: 'image/*'
-                },
-                confirmButtonText: 'Enviar Pedido',
-                confirmButtonColor: '#28a745',
-                inputValidator: (file) => {
-                    if (!file) {
-                        return 'Por favor, anexe o comprovante de pagamento!';
-                    }
-                }
-            }).then(async (result) => {
-                if (result.isConfirmed) {
-                    const file = result.value;
-
-                    // Exibe o modal de loading
-                    Swal.fire({
-                        title: 'Aguarde',
-                        text: 'Estamos enviando seu comprovante...',
-                        allowOutsideClick: false,
-                        didOpen: () => {
-                            Swal.showLoading();
-                        }
-                    });
-
-                    const linkComprovante = await uploadToImage(file);
-                    message += `*Forma de pagamento:* Pix\n*Comprovante:* ${linkComprovante}\n`;
-
-                    sendOrder(message);
-                }
-            });
-        }
-    });
-}
 
 
 async function uploadToImage(file) {
