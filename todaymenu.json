@@ -3,17 +3,34 @@
         "categoria": "Porções",
         "itens": [
             {
-                "nome": "Arroz e Lasanha",
-                "ingredientes": "Arroz, lasanha",
-                "preco": 14.00,
-                "foto": "https://www.dickow.com.br/blog/wp-content/uploads/2017/02/Lasanha-de-arroz-com-frango.jpg"
-            },
-            {
                 "nome": "Porção de Frango com Batata",
                 "ingredientes": "Frango frito, batata frita",
                 "preco": 20.00,
                 "foto": "https://media-cdn.tripadvisor.com/media/photo-s/15/bb/bf/50/porcao-de-file-de-frango.jpg",
-                "disponivel": false
+                "disponivel": true
+            }
+        ]
+    },
+    {
+        "categoria": "Salgados",
+        "itens": [
+            {
+                "nome": "Coxinha",
+                "ingredientes": "Massa de batata, frango desfiado, requeijão",
+                "preco": 8.00,
+                "foto": "https://cdn.casaeculinaria.com/wp-content/uploads/2023/05/16114400/Massa-de-coxinha.webp"
+            },
+            {
+                "nome": "Maravilha",
+                "ingredientes": "Pão de forma, presunto, queijo, empanado e frito",
+                "preco": 8.00,
+                "foto": "https://pbs.twimg.com/media/E5y0LIlXIAASeuZ.jpg"
+            },
+            {
+                "nome": "Espetinho de Frango com Requeijão",
+                "ingredientes": "Frango grelhado, requeijão",
+                "preco": 10.00,
+                "foto": "https://espetinhodesucesso.com/wp-content/uploads/2016/06/como-fazer-espetinho-de-frango-empanado-para-vender.jpg"
             }
         ]
     },
