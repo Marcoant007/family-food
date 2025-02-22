@@ -1,36 +1,29 @@
 [
     {
-        "categoria": "Porções",
+        "categoria": "Lanches",
         "itens": [
             {
-                "nome": "Porção de Frango com Batata",
-                "ingredientes": "Frango frito, batata frita",
-                "preco": 20.00,
-                "foto": "https://media-cdn.tripadvisor.com/media/photo-s/15/bb/bf/50/porcao-de-file-de-frango.jpg",
-                "disponivel": true
+                "nome": "Pastel",
+                "ingredientes": "Massa de pastel, recheio a escolha",
+                "preco": 9.00,
+                "foto": "https://as2.ftcdn.net/jpg/08/62/09/69/1000_F_862096924_CPrS8qrrGf8de8jGiJAblORKp68iK1gZ.jpg"
+            },
+            {
+                "nome": "Salgado Assado",
+                "ingredientes": "Massa assada, recheio a escolha",
+                "preco": 10.00,
+                "foto": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRO7nslxyTjih5xQHs2DOyNQFD3uPnirB-AmA&usqp=CAU"
             }
         ]
     },
     {
-        "categoria": "Salgados",
+        "categoria": "Caldo de Cana",
         "itens": [
             {
-                "nome": "Coxinha",
-                "ingredientes": "Massa de batata, frango desfiado, requeijão",
-                "preco": 8.00,
-                "foto": "https://cdn.casaeculinaria.com/wp-content/uploads/2023/05/16114400/Massa-de-coxinha.webp"
-            },
-            {
-                "nome": "Maravilha",
-                "ingredientes": "Pão de forma, presunto, queijo, empanado e frito",
-                "preco": 8.00,
-                "foto": "https://pbs.twimg.com/media/E5y0LIlXIAASeuZ.jpg"
-            },
-            {
-                "nome": "Espetinho de Frango com Requeijão",
-                "ingredientes": "Frango grelhado, requeijão",
-                "preco": 10.00,
-                "foto": "https://espetinhodesucesso.com/wp-content/uploads/2016/06/como-fazer-espetinho-de-frango-empanado-para-vender.jpg"
+                "nome": "Caldo de Cana 300ml",
+                "ingredientes": "Caldo de cana puro",
+                "preco": 5.00,
+                "foto": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTb4D6yVFGCMq90ImIkt_SFehKABwIdmHE3CKHr6z0lpvPE33G_QzUtLaQM&s=10"
             }
         ]
     },
