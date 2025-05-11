@@ -1,82 +1,88 @@
 [
-    {
-        "categoria": "Lanches",
-        "itens": [
-            {
-                "nome": "Pastel",
-                "ingredientes": "Massa de pastel, recheio a escolha",
-                "preco": 9.00,
-                "foto": "https://as2.ftcdn.net/jpg/08/62/09/69/1000_F_862096924_CPrS8qrrGf8de8jGiJAblORKp68iK1gZ.jpg"
-            },
-            {
-                "nome": "Salgado Assado",
-                "ingredientes": "Massa assada, recheio a escolha",
-                "preco": 10.00,
-                "foto": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRO7nslxyTjih5xQHs2DOyNQFD3uPnirB-AmA&usqp=CAU"
-            }
-        ]
-    },
-    {
-        "categoria": "Caldo de Cana",
-        "itens": [
-            {
-                "nome": "Caldo de Cana 300ml",
-                "ingredientes": "Caldo de cana puro",
-                "preco": 5.00,
-                "foto": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTb4D6yVFGCMq90ImIkt_SFehKABwIdmHE3CKHr6z0lpvPE33G_QzUtLaQM&s=10"
-            }
-        ]
-    },
-    {
-        "categoria": "Açai",
-        "itens": [
-            {
-                "nome": "Açai",
-                "ingredientes": "Açai, leite em pó, leite condensado",
-                "preco": 12.00,
-                "foto": "https://media.istockphoto.com/id/1364213175/pt/foto/brazilian-frozen-a%C3%A7ai-berry-ice-cream-smoothie-in-plastic-cup-with-bananas-strawberry-and.jpg?s=612x612&w=0&k=20&c=d1VUzBghAPoefO-w1uYp59Lp9PcnMRHVhzlfRu8VgXk="
-            }
-        ]
-    },
-    {
-        "categoria": "Bebidas",
-        "itens": [
-            {
-                "nome": "Refrigerante Lata",
-                "ingredientes": "350ml",
-                "preco": 5.00,
-                "foto": "https://images.tcdn.com.br/img/img_prod/1170916/refrigerante_coca_cola_zero_350ml_59210_1_3b2f07fdcc5dade1221f6cbcd183aaaa.jpg"
-            },
-            {
-                "nome": "Energético",
-                "ingredientes": "350ml",
-                "preco": 10.00,
-                "foto": "https://fs-vendola-images.s3.amazonaws.com/c706ade939391e6275a4-Designsemnome3.png"
-            },
-            {
-                "nome": "Água Tônica",
-                "ingredientes": "350ml",
-                "preco": 5.00,
-                "foto": "https://m.media-amazon.com/images/I/71OCuUXIaIL._AC_SL1500_.jpg"
-            },
-            {
-                "nome": "Refrigerante Juninho",
-                "ingredientes": "Sabores: Cola, Uva, Limão",
-                "preco": 3.00,
-                "foto": "https://sachefmio.blob.core.windows.net/fotos/refrigerante-juninho-227135.jpg"
-            },
-            {
-                "nome": "Coca 600ml",
-                "ingredientes": "600ml",
-                "preco": 8.00,
-                "foto": "https://andinacocacola.vtexassets.com/arquivos/ids/158147/Coca-Cola-Original-600ml---110122_COCA_PAI.png?v=638575344917030000"
-            },
-            {
-                "nome": "Coca 1,5L",
-                "ingredientes": "1,5L",
-                "preco": 10.00,
-                "foto": "https://www.clubeextra.com.br/img/uploads/1/453/24911453.jpg"
-            }
-        ]
-    }
+  {
+    "categoria": "Porções",
+    "itens": [
+      {
+        "nome": "Porção de Frango com Batata",
+        "ingredientes": "Frango empanado e batatas fritas",
+        "preco": 20.00,
+        "foto": "https://cdn.panelinha.com.br/receita/958014000000-Porcoes-de-frango-crocante-com-batata.jpg"
+      },
+      {
+        "nome": "Porção de Filé de Tilápia com Batatas",
+        "ingredientes": "Filé de tilápia empanado e batatas fritas",
+        "preco": 30.00,
+        "foto": "https://receitinhas.com.br/wp-content/uploads/2022/11/file-de-tilapia-frito.jpg"
+      },
+      {
+        "nome": "Porção de Batata",
+        "ingredientes": "Batatas fritas crocantes",
+        "preco": 12.00,
+        "foto": "https://static.itdg.com.br/images/640-400/79f58b7f5e2e30162a8a6b1707bff601/346118-original.jpg"
+      }
+    ]
+  },
+  {
+    "categoria": "Açai",
+    "itens": [
+      {
+        "nome": "Açai",
+        "ingredientes": "Açai, leite em pó, leite condensado",
+        "preco": 12.00,
+        "foto": "https://media.istockphoto.com/id/1364213175/pt/foto/brazilian-frozen-a%C3%A7ai-berry-ice-cream-smoothie-in-plastic-cup-with-bananas-strawberry-and.jpg?s=612x612&w=0&k=20&c=d1VUzBghAPoefO-w1uYp59Lp9PcnMRHVhzlfRu8VgXk="
+      }
+    ]
+  },
+  {
+    "categoria": "Bebidas",
+    "itens": [
+      {
+        "nome": "Refrigerante Lata",
+        "ingredientes": "350ml",
+        "preco": 5.00,
+        "foto": "https://images.tcdn.com.br/img/img_prod/1170916/refrigerante_coca_cola_zero_350ml_59210_1_3b2f07fdcc5dade1221f6cbcd183aaaa.jpg"
+      },
+      {
+        "nome": "Energético",
+        "ingredientes": "350ml",
+        "preco": 10.00,
+        "foto": "https://fs-vendola-images.s3.amazonaws.com/c706ade939391e6275a4-Designsemnome3.png"
+      },
+      {
+        "nome": "Água Tônica",
+        "ingredientes": "350ml",
+        "preco": 5.00,
+        "foto": "https://m.media-amazon.com/images/I/71OCuUXIaIL._AC_SL1500_.jpg"
+      },
+      {
+        "nome": "Refrigerante Juninho",
+        "ingredientes": "Sabores: Cola, Uva, Limão",
+        "preco": 3.00,
+        "foto": "https://sachefmio.blob.core.windows.net/fotos/refrigerante-juninho-227135.jpg"
+      },
+      {
+        "nome": "Coca 600ml",
+        "ingredientes": "600ml",
+        "preco": 8.00,
+        "foto": "https://andinacocacola.vtexassets.com/arquivos/ids/158147/Coca-Cola-Original-600ml---110122_COCA_PAI.png?v=638575344917030000"
+      },
+      {
+        "nome": "Coca 1,5L",
+        "ingredientes": "1,5L",
+        "preco": 10.00,
+        "foto": "https://www.clubeextra.com.br/img/uploads/1/453/24911453.jpg"
+      }
+    ]
+  },
+  {
+    "categoria": "Sobremesas",
+    "itens": [
+      {
+        "nome": "Mousse de Maracujá",
+        "ingredientes": "Leite condensado, creme de leite, suco de maracujá e cobertura de sementes",
+        "preco": 8.00,
+        "foto": "https://cdn0.tudoreceitas.com/pt/posts/9/5/1/mousse_de_maracuja_facil_3159_orig.jpg"
+      }
+    ]
+  }
 ]
